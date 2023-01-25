@@ -1,0 +1,44 @@
+*{
+  box-sizing: border-box;
+}
+
+:root{
+  --main-color: #B5D5C5;
+  --secondery-color: #C8DBBE;
+  --btn-clicked-color: #7D8F69;
+  
+  /* --shadow: 5px 5px 40px #333; */
+}
+
+body{
+  background-color:var(--main-color);
+}
+
+.board{
+  background-color: var(--secondery-color);
+}
+
+table{
+  margin: auto;
+  text-align: center;
+}
+
+.cell{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: #444 solid 1px;
+  /* box-shadow: var(--shadow); */
+}
+
+.cell:hover{
+  opacity: 0.8;
+}
+
+.shown{
+  background-color: var(--btn-clicked-color)
+}
+
+footer{
+  text-align: center;
+}
