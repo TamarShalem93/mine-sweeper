@@ -1,5 +1,7 @@
 *{
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 :root{
@@ -7,15 +9,105 @@
   --secondery-color: #C8DBBE;
   --btn-clicked-color: #7D8F69;
   
+  
   /* --shadow: 5px 5px 40px #333; */
 }
 
 body{
   background-color:var(--main-color);
+  
+}
+
+.header{
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Righteous', cursive;
+  color: var(--btn-clicked-color);
+}
+
+.game{
+width: 450px;
+margin: auto;
+border: var(--btn-clicked-color) 5px solid;
+border-radius: 5px;
+
+}
+
+.game-info{
+  text-align: center;
+  background-color: var(--btn-clicked-color);
+}
+
+.lives{
+  margin: auto;
+  color: var(--secondery-color);
+  font-family: 'Righteous', cursive;
+}
+
+.game-info-small{
+  background-color: var(--secondery-color);
+  
+}
+
+.timer, 
+.booms-remain,
+.reset-btn
+{
+display: inline-block;
+text-align: center;
+
+/* justify-content: center;
+align-items: center; */
+}
+
+.timer, 
+.booms-remain{
+  font-family: 'Wallpoet', cursive;
+  background-color: black;
+  color: red;
+  width: 50px;
+  height: 30px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn{
+  cursor: pointer;
+  background-color: var(--secondery-color);
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  font-family: 'Righteous', cursive;
+  color: var(--btn-clicked-color);
+  transition: 1s;
+  border-radius: 5px;
+}
+
+.btn:hover{
+  opacity: 0.6;
+}
+
+.reset-btn{
+  background-color: var(--btn-clicked-color);
+  margin-top: 2px;
+  width: 30px;
+  height: 30px;
+
+}
+
+.used-hint{
+  opacity: 0.5;
 }
 
 .board{
   background-color: var(--secondery-color);
+  /* width: 420px; */
+  height: 420px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 table{
@@ -24,21 +116,44 @@ table{
 }
 
 .cell{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   border: #444 solid 1px;
-  /* box-shadow: var(--shadow); */
+  font-family: 'Righteous',
+    cursive;
+  border-radius: 5px;
 }
 
 .cell:hover{
-  opacity: 0.8;
+  background-color: var(--main-color);
+  opacity: 0.7;
 }
 
 .shown{
   background-color: var(--btn-clicked-color)
 }
 
+.modal {
+  display: none;
+  border-radius: 50px;
+  text-align: center;
+  background-color: var(--main-color);
+  border: 5px solid var(--btn-clicked-color);
+  width: 100px;
+  padding: 20px;
+  box-shadow: 5px 5px 20px var(--main-color);
+ 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+}
+
 footer{
   text-align: center;
+  padding: 10px;
+  font-family: 'Righteous', cursive;
+  color: var(--btn-clicked-color);
 }
