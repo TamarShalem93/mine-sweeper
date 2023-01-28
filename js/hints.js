@@ -1,31 +1,49 @@
 "use strict";
 
 function getHint(elHintsbtn) {
-  gGame.isHint = true;
-  elHintsbtn.innerText = USEDHINT;
-  elHintsbtn.classList.add("used-hint");
+  if (gGame.isHint && elHintsbtn.classList.contains("used-hint")) return;
+
+  if (elHintsbtn.classList.contains("clicked-hint")) {
+    gGame.isHint = false;
+    elHintsbtn.classList.remove("clicked-hint");
+  } else {
+    elHintsbtn.classList.add("clicked-hint");
+    gGame.isHint = true;
+  }
 }
 
-function onHintOn(elCell, location) {
-  var elModal = document.querySelector(".modal");
-  elModal.style.display = "block";
-
+function onHintOn(location) {
   var currCell = gBoard[location.i][location.j];
-
-  var elModalHint = document.querySelector(".modal .hint");
-  elModalHint.innerText = currCell.isMine ? BOOM : currCell.minesAroundCount;
+  currCell.isShown = true;
+  renderCell(location, checkCellValue(location.i, location.j));
 
   setTimeout(() => {
+    currCell.isShown = false;
+    renderCell(location, EMPTY);
+
     gGame.isHint = false;
-    elModal.style.display = "none";
-  }, 1000);
+    updateHintsBtn();
+  }, 1500);
+}
+
+function updateHintsBtn() {
+  var elHintsbtn;
+  for (var i = 0; i < 3; i++) {
+    elHintsbtn = document.querySelector(`.hint${i + 1}-btn`);
+
+    if (elHintsbtn.classList.contains("clicked-hint")) {
+      elHintsbtn.innerText = USEDHINT;
+      elHintsbtn.classList.add("used-hint");
+    }
+  }
 }
 
 function resetHints() {
-  var elHint;
+  var elHintsbtn;
   for (var i = 0; i < 3; i++) {
-    elHint = document.querySelector(`.hint${i + 1}-btn`);
-    elHint.classList.remove("used-hint");
-    elHint.innerText = HINT;
+    elHintsbtn = document.querySelector(`.hint${i + 1}-btn`);
+    elHintsbtn.classList.remove("used-hint");
+    elHintsbtn.classList.remove("clicked-hint");
+    elHintsbtn.innerText = HINT;
   }
 }

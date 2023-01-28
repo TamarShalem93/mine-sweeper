@@ -8,14 +8,10 @@
   --main-color: #B5D5C5;
   --secondery-color: #C8DBBE;
   --btn-clicked-color: #7D8F69;
-  
-  
-  /* --shadow: 5px 5px 40px #333; */
 }
 
 body{
   background-color:var(--main-color);
-  
 }
 
 .header{
@@ -45,9 +41,8 @@ border-radius: 5px;
   font-family: 'Righteous', cursive;
 }
 
-.game-info-small{
-  background-color: var(--secondery-color);
-  
+.game-small-info1{
+  background-color: var(--secondery-color);  
 }
 
 .timer, 
@@ -56,9 +51,6 @@ border-radius: 5px;
 {
 display: inline-block;
 text-align: center;
-
-/* justify-content: center;
-align-items: center; */
 }
 
 .timer, 
@@ -101,10 +93,13 @@ align-items: center; */
   opacity: 0.5;
 }
 
+.clicked-hint{
+  opacity: 0.5;
+}
+
 .board{
   background-color: var(--secondery-color);
-  /* width: 420px; */
-  height: 420px;
+  height: 410px;
   margin: auto;
   padding: 10px;
   border-radius: 5px;
@@ -134,26 +129,9 @@ table{
   background-color: var(--btn-clicked-color)
 }
 
-.modal {
-  display: none;
-  border-radius: 50px;
-  text-align: center;
-  background-color: var(--main-color);
-  border: 5px solid var(--btn-clicked-color);
-  width: 100px;
-  padding: 20px;
-  box-shadow: 5px 5px 20px var(--main-color);
- 
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.5s;
-}
-
 footer{
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   font-family: 'Righteous', cursive;
   color: var(--btn-clicked-color);
 }

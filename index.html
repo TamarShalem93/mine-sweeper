@@ -21,6 +21,7 @@
     <div class="header">
       <h1>Mine Sweeper 2.0</h1>
     </div>
+
     <div class="game">
       <div class="game-info">
         <div class="level">
@@ -28,25 +29,30 @@
           <button class="btn level-btn" onclick="setLevel(this)">Medium</button>
           <button class="btn level-btn" onclick="setLevel(this)">Hard</button>
         </div>
-        <div class="game-info-small">
+
+        <div class="game-small-info1">
           <div class="timer"></div>
           <button class="btn reset-btn" onclick="resetGame(this)">😃</button>
           <div class="booms-remain"><p>000</p></div>
         </div>
-        <div class="game-info-small"></div>
-        <!-- <button class="btn undo-btn" onclick="undo()">undo</button> -->
-        <div class="lives">
-          <p class="lives-remain">lives: <span class="hearts">❤️❤️❤️</span></p>
-        </div>
-        <div class="hints">
-          <button class="btn hint1-btn" onclick="getHint(this)">🔔</button>
-          <button class="btn hint2-btn" onclick="getHint(this)">🔔</button>
-          <button class="btn hint3-btn" onclick="getHint(this)">🔔</button>
-          <div class="modal">
-            <h2 class="hint"></h2>
+
+        <div class="game-small-info2">
+          <button class="btn undo-btn" onclick="undo()">undo</button>
+
+          <div class="lives">
+            <p class="lives-remain">
+              lives: <span class="hearts">❤️❤️❤️</span>
+            </p>
+          </div>
+
+          <div class="hints">
+            <button class="btn hint1-btn" onclick="getHint(this)">🔔</button>
+            <button class="btn hint2-btn" onclick="getHint(this)">🔔</button>
+            <button class="btn hint3-btn" onclick="getHint(this)">🔔</button>
           </div>
         </div>
       </div>
+
       <div class="board">
         <table>
           <tbody></tbody>
@@ -55,9 +61,11 @@
     </div>
 
     <footer>Tamar Shalem</footer>
+
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
     <script src="js/play.js"></script>
     <script src="js/hints.js"></script>
+    <script src="js/undo.js"></script>
   </body>
 </html>

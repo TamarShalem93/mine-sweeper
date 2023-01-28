@@ -21,7 +21,7 @@ var gLevel = {
 
 var gGame = {};
 var gLives = [];
-var gPreviousMove = [];
+var gPreMovesLoctions = [];
 
 var timeBegan = null,
   timeStopped = null,

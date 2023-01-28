@@ -1,42 +1,35 @@
 "use strict";
 
 function onCellClicked(elCell, i, j) {
-  var value;
   var currCell = gBoard[i][j];
 
-  // gPreviousMove.push({ lastMove: gBoard[i][j], i, j });
+  if (!gGame.isOn || currCell.isMarked || currCell.isShown) return;
+  // gPreMovesLoctions.pop();
 
-  if (!gGame.isOn) {
-    gGame.isOn = true;
+  if (gGame.isHint) {
+    onHintOn({ i, j });
+    return;
+  }
+
+  gPreMovesLoctions.push({ i, j });
+
+  if (gGame.isFirstClick) {
+    gGame.isFirstClick = false;
     startTimer();
     addMines(gLevel.MINES, gBoard);
     setMinesNegsCount(gBoard);
   }
 
-  if (gGame.isHint) {
-    onHintOn(elCell, { i, j });
-    return;
-  }
-
-  // if (!gGame.isOn || currCell.isMarked || currCell.isShown) {
-  //   gPreviousMove.pop();
-  //   return;
-  // }
-
   currCell.isShown = true;
 
   if (currCell.isMine) {
-    value = BOOM;
     gGame.mainesCount--;
     gGame.lives--;
     updatedLives();
-  } else if (currCell.minesAroundCount === 0) {
-    expandShown(gBoard, elCell, i, j);
+    gGame.shownMainsCount++;
+  } else if (currCell.minesAroundCount === 0) expandShown(gBoard, elCell, i, j);
 
-    value = EMPTY;
-  } else if (currCell.minesAroundCount > 0) value = currCell.minesAroundCount;
-
-  renderCell({ i, j }, value);
+  renderCell({ i, j }, checkCellValue(i, j));
   updateBoomsRemain();
   checkGameOver();
 }
@@ -48,18 +41,14 @@ function expandShown(board, elCell, rowIdx, colIdx) {
     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
       if (i === rowIdx && j === colIdx) continue;
       if (j < 0 || j >= board[i].length) continue;
-      var value;
       var currCell = board[i][j];
 
       if (currCell.isShown || currCell.isMarked) continue;
 
       currCell.isShown = true;
 
-      if (currCell.minesAroundCount > 0) value = currCell.minesAroundCount;
-      if (currCell.minesAroundCount === 0) {
-        value = EMPTY;
-      }
-      renderCell({ i, j }, value, elCell);
+      renderCell({ i, j }, checkCellValue(i, j));
+      gPreMovesLoctions.push({ i, j });
 
       if (currCell.minesAroundCount === 0 && !currCell.isMarked) {
         expandShown(board, elCell, i, j);
@@ -74,7 +63,8 @@ function onCellMarked(i, j) {
   var value;
 
   if (currCell.isShown) return;
-  if (gGame.markedCount >= gLevel.MINES) return;
+  if (gGame.markedCount === gLevel.MINES) return;
+  if (gGame.shownMainsCount + gGame.markedCount === gLevel.MINES) return;
 
   currCell.isMarked = !currCell.isMarked;
 
@@ -86,33 +76,7 @@ function onCellMarked(i, j) {
     gGame.markedCount--;
   }
 
-  renderCell({ i, j }, value);
+  renderCell({ i, j }, checkCellValue(i, j));
   updateBoomsRemain();
   checkGameOver();
 }
-
-// function checkCellValue(i, j) {
-//   var value;
-//   var currCell = gBoard[i][j];
-
-//   if (currCell.minesAroundCount > 0) value = currCell.minesAroundCount;
-//   if (currCell.isMine) value = BOOM;
-//   if (currCell.minesAroundCount === 0 || !currCell.isMarked) value = EMPTY;
-//   if (currCell.isMarked) value = FLAG;
-
-//   console.log(value);
-//   return value;
-// }
-
-// function undo() {
-//   var lastMove = gPreviousMove.splice(gGame.length - 1, 1);
-//   console.log(lastMove);
-
-//   gBoard[i][j] = {
-//     minesAroundCount: lastMove.minesAroundCount,
-//     isShown: lastMove.isMarked,
-//     isMine: lastMove.isMine,
-//     isMarked: lastMove.isMarked,
-//   };
-//   renderBoard(lastMove);
-// }
