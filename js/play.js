@@ -25,6 +25,7 @@ function onCellClicked(elCell, i, j) {
   if (currCell.isMine) {
     gGame.mainesCount--;
     gGame.lives--;
+    console.log(gGame.lives);
     updatedLives();
     gGame.shownMainsCount++;
   } else if (currCell.minesAroundCount === 0) expandShown(gBoard, elCell, i, j);

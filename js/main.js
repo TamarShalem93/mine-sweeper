@@ -1,9 +1,12 @@
 "use strict";
 
 function onInit() {
+  gPreMovesLoctions = [];
+
   resetTimer();
 
-  gPreMovesLoctions = [];
+  var elResetBtn = document.querySelector(".reset-btn");
+  elResetBtn.innerText = NORMAL;
 
   gBoard = buildBoard(gLevel.SIZE);
   renderBoard(gBoard);
@@ -166,12 +169,15 @@ function checkGameOver() {
   var elShownCells = document.querySelectorAll(".shown");
   const MAXSHOWNCELLS = elShownCells.length + gGame.markedCount;
 
-  if (gGame.shownMainsCount + gGame.markedCount !== gLevel.MINES) return;
-
-  if (gLevel.SIZE ** 2 === MAXSHOWNCELLS && gGame.lives > 0) {
+  if (
+    gLevel.SIZE ** 2 === MAXSHOWNCELLS &&
+    gGame.lives > 0 &&
+    gGame.shownMainsCount + gGame.markedCount === gLevel.MINES
+  ) {
     elResetBtn.innerText = WIN;
     endGame();
   }
+
   if (gGame.lives === 0) {
     elResetBtn.innerText = DEAD;
     endGame();
