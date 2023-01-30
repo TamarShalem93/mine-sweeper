@@ -77,7 +77,7 @@ function onCellMarked(i, j) {
     gGame.markedCount--;
   }
 
-  renderCell({ i, j }, checkCellValue(i, j));
+  renderCell({ i, j }, value);
   updateBoomsRemain();
   checkGameOver();
 }
