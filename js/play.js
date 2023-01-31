@@ -78,6 +78,7 @@ function onCellMarked(i, j) {
   }
 
   renderCell({ i, j }, value);
+  gPreMovesLoctions.push({ i, j });
   updateBoomsRemain();
   checkGameOver();
 }

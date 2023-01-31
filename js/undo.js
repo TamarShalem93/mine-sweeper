@@ -3,13 +3,23 @@ function undo() {
   var rowIdx = lastMove.i;
   var colIdx = lastMove.j;
 
-  gBoard[rowIdx][colIdx].isShown = false;
+  if (!gGame.isOn) return;
 
-  if (gBoard[rowIdx][colIdx].isMine) {
+  if (gBoard[rowIdx][colIdx].isMine && gBoard[rowIdx][colIdx].isShown) {
     gGame.lives++;
     updatedLives();
+    gGame.mainesCount++;
+    gGame.shownMainsCount--;
+    updateBoomsRemain();
   }
 
+  if (gBoard[rowIdx][colIdx].isMarked) {
+    gBoard[rowIdx][colIdx].isMarked = !gBoard[rowIdx][colIdx].isMarked;
+    gGame.markedCount--;
+    updateBoomsRemain();
+  }
+
+  gBoard[rowIdx][colIdx].isShown = false;
   renderCell(lastMove, EMPTY);
 
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
