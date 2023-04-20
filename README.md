@@ -1,5 +1,5 @@
 # mine-sweeper
-the very first game I ever coded and d designed entirely on my own:)
+The very first game I ever coded and d designed entirely on my own:)
 Writing it was an especially fun and educational experience. The code is written in vanilla JavaScript, HTML and CSS.
 
 
